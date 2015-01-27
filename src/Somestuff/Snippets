@@ -1,0 +1,165 @@
+======================================	
+No idea what this does, but old code.
+	
+	private CPU extractDataFromCpuNode(GraphDatabaseService db, ArrayList n){
+		CPU cpu = new CPU();
+		int randomNumber = (int) Math.floor(Math.random()*20);
+		Transaction tx =  db.beginTx();
+		try{
+			NodeProxy ramNode = (NodeProxy) n.get(randomNumber);
+			cpu.setEan(ramNode.getProperty("EAN").toString());
+			cpu.setIsEmpty(false);
+			cpu.setIsMatched(true);
+			tx.success();
+		}catch(Exception e){
+			cpu.setIsEmpty(true);
+			cpu.setIsMatched(false);
+		}finally {tx.close();} 
+		
+		return cpu;
+	}
+	private Memory extractDataFromMemoryNode(GraphDatabaseService db, ArrayList n){
+		Memory ram = new Memory();
+		int randomNumber = (int) Math.floor(Math.random()*20);
+		Transaction tx =  db.beginTx();
+		try{
+			NodeProxy ramNode = (NodeProxy) n.get(randomNumber);
+			ram.setEan(ramNode.getProperty("EAN").toString());
+			ram.setIsEmpty(false);
+			ram.setIsMatched(true);
+			tx.success();
+		} catch(Exception e){
+			ram.setIsEmpty(true);
+			ram.setIsMatched(false);
+		}finally{tx.close();} 
+		
+		return ram;
+	}
+}	
+
+=======================================================
+
+		/*Case:
+	    *	1 Krijg een arraylist van mo
+	    *	2 Parse arraylist in onderdelen
+	    *	3 Check compatibility
+	    *	4 Maak nieuwe list met onderdelen
+	    *
+	    *
+	    */
+	    
+	    /*
+	     * 1 Is de input van mo
+	     * Kijgt het in form van:
+	     * null voor not selected.
+	     * JSON voor geselecteerde onderdelen.
+	     */
+//	    ArrayList webInput = new ArrayList();	 
+//	    webInput = webinput.inputWebserverMotherboard();
+	    /*	2 Haalt op wat meegegeven is en parsed het in objecten. 
+	    *	null betekend dat onderdeel niet meegegeven is
+	    */
+//	    ArrayList matchedComponents = matcher.getHardwareByInput(webInput);
+	    
+	    /*
+	     * 3 Matcher
+	     * 	Moet onderdelen matchen
+	     */
+//	    ArrayList matchedHardware = new ArrayList();
+//	    matchedHardware = matcher.matchFromMotherboard(matchedComponents);
+==============================================================
+			switch(i){
+			case 0:
+				CPU cpu = (CPU) userSelectedComponents.get(i);
+				if(!cpu.getIsEmpty())
+					System.out.println("Full");
+				break;
+			case 1:
+				GPU gpu = (GPU) userSelectedComponents.get(i);
+
+				System.out.println("Full");
+				break;
+			case 2:
+				Memory ram = (Memory) userSelectedComponents.get(i);
+
+				System.out.println("Full");
+				break;
+			case 3:
+				HDD hdd = (HDD) userSelectedComponents.get(i);
+
+				System.out.println("Full");
+				break;
+			case 4:
+				SSD ssd = (SSD) userSelectedComponents.get(i);
+
+				System.out.println("Full");
+				break;
+			case 5:
+				PSU psu = (PSU) userSelectedComponents.get(i);
+
+				System.out.println("Full");
+				break;
+			case 6:
+				CASE pcCase = (CASE) userSelectedComponents.get(i);
+
+				System.out.println("Full");
+				break;
+			case 7:
+				Motherboard mb = (Motherboard) userSelectedComponents.get(i);
+
+				System.out.println("Full");
+				break;
+			case 8:
+				OpticalDrive opt = (OpticalDrive) userSelectedComponents.get(i);
+
+				System.out.println("Full");
+				break;
+			case 9:
+				Soundcard soundcard = (Soundcard) userSelectedComponents.get(i);
+
+				System.out.println("Full");
+				break;
+			}
+=============================================================================================
+
+	public void getLowestPrice(float[] priceList){
+		float smallestNumber = priceList[0];
+		for(int i = 0; i<priceList.length;i++){
+			if(priceList[i]<smallestNumber)
+				smallestNumber = priceList[i];
+		}
+	}
+	public Memory getCheapestMemory(ArrayList arr){
+		Memory ram = new Memory();
+		float lowestPrice = 999999999;
+		for(int i = 0;i<arr.size();i++){
+			ram = (Memory) arr.get(i);
+			ResultSet rs  = mysqlManager.getPricesByComponentEan(this.mysqlConn, ram.getEan());
+			try {
+				if(rs.next()){
+					float price = Float.parseFloat(rs.getString(rs.findColumn("priceex")));
+					if (price < lowestPrice) {
+						lowestPrice = price;
+						ram.setEan(rs.getString(rs.findColumn("ean")));
+						ram.setShopname(rs.getString(rs.findColumn("shopname")));
+						ram.setDelivery(rs.getString(rs.findColumn("delivery")));
+						ram.setPriceex(rs.getString(rs.findColumn("priceex")));
+						ram.setPriceinc(rs.getString(rs.findColumn("priceinc")));
+						ram.setLinkshop(rs.getString(rs.findColumn("linkshop")));
+						ram.setTimestamp((rs.getString(rs.findColumn("max(timestamp)"))));
+					}
+				}
+			}catch(SQLException e){e.printStackTrace();}
+
+		}
+
+		return ram;
+	}
+========================================================================================================================
+
+
+
+
+
+
+

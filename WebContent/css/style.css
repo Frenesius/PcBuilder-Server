@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+body{
+	font-family:Tahoma, Geneva, sans-serif;
+font-size: 12px;
+}
+.container-fluid {
+	
+}
+
+#GPU{
+	float: left;
+}
+
+#CPU{
+	float: left;
+}
+
+#Motherboard{
+	float: left;
+}
+
+#RAM{
+	float: left;
+}
+
+#HDD{	
+	float: left;
+}
+
+#SSD{
+	float: left;
+}
+
+#PSU{
+	float: left;
+}
+
+#CASE{
+	float: left;
+}
+
+#OPTICALDRIVE{
+	float: left;
+}
+
+#SOUNDCARD{
+	float: left;
+}
+
