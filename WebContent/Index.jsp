@@ -23,7 +23,6 @@
 
 
 <div class='container-fluid' ng-controller="JsonInputBestand">
-
 	<div id=GPU>
     	<h4>GPU</h4>
     	<pre>SELECTED GPU:</pre>
@@ -88,13 +87,10 @@
     <input type="text" ng-model="selected.sound" placeholder="Kies je Sound Card" typeahead="sound as sound.Product + ' ' + sound.Uitvoering for sound in componentsSOUND | filter:$viewValue | limitTo:100" class="form-control">
 </div>
 
-	<input type="submit" ng-click="update(selected)" value="Save"  name="Data1" id="Data1">
-	
-	
-	
-	
+	<input type="submit" ng-click="update(selected)" value="Save" >
 
-</div>
+	</div>
+
   </body>
 </html>
 

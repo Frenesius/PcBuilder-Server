@@ -8,23 +8,25 @@ angular.module('ui.bootstrap.demo').controller('JsonInputBestand', function ($sc
     });
     $scope.master = [];
     
-    $scope.update = function (selected) {
-        $scope.master = angular.toJson(selected);
-        
-        $http({
-        	method: "POST",
-        	url: "/WebFrenesius/UserRequest.do",
-        	data: $scope.master,
-        	headers:{
-        	"Content-Type" : "application/x-www-form-urlencoded"}
-        	})
-        	.success(function(data,status,headers,config) 
-        			{
-        		$scope.msg = $scope.master;
-        		
-        			})
-         };
-   
+	    $scope.update = function (selected) {
+	        $scope.master = angular.toJson(selected);
+	        
+	        $http({
+	        	method: "POST",
+	        	url: "/WebFrenesius/UserRequest.do",
+
+	        	data: $scope.master,
+	        	headers:{
+	        	"Content-Type" : "application/x-www-form-urlencoded"}
+	        	})
+	        	.success(function(data,status,headers,config) 
+	        			{
+	        		window.href = '/WebFrenesius/OutputUser.jsp'
+	        		$scope.msg = $scope.master;
+	        		
+	        		
+	        			})
+	    }
        
 
 // Any function returning a promise object can be used to load values asynchronously

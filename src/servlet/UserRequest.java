@@ -14,6 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONException;
+
+import components.CPU;
+
 
 @WebServlet("/UserRequest.do")
 public class UserRequest extends HttpServlet {
@@ -39,18 +43,31 @@ public class UserRequest extends HttpServlet {
 		
 		BufferedReader bufferedReaderFromUserInput = new BufferedReader(new InputStreamReader(request.getInputStream()));
 		parsedJSONString = bufferedReaderFromUserInput.readLine();
+
 		setParsedJSONString(parsedJSONString);
-		ServletContext context= getServletContext();
+		System.out.println(parsedJSONString);
 		
 		if (parsedJSONString.isEmpty()) {
 			System.out.println("No component chosen");
 		} else {
-			RequestDispatcher rd = context.getRequestDispatcher("/OutputUser.do");
-			rd.forward(request, response);
+			ArrayList comp = null;
+			try {
+				comp = JSONparseClass.Start();
+				ServletContext context = getServletContext();
+				RequestDispatcher rd = context.getRequestDispatcher("/OutputUser.jsp");
+				request.setAttribute("Components", comp);
+				rd.forward(request, response);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}	
 	}
 	
+	
+	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+	
 	}
 }

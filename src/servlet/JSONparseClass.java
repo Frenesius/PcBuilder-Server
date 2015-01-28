@@ -20,7 +20,7 @@ import org.json.JSONObject;
 		}
 		
 		public static ArrayList subStringingJSONObject() throws JSONException {
-		
+			
 			String userInputJSONFromChosenParts = UserRequest.getParsedJSONString().replaceAll("\"", "\'");
 			
 			JSONObject jsonObjectFromUser = new JSONObject(userInputJSONFromChosenParts);
@@ -82,7 +82,7 @@ import org.json.JSONObject;
 			long totalTime = endTime - startTime;
 			
 			System.out.println("[Performance]Total time: " +totalTime);
-			for(int i = 0; i<arr.size();i++){
+			for(int i = 0; i < arr.size();i++){
 				System.out.println(arr.get(i));
 			}
 			return arr;
